@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+      .container{
+    text-align: center;
+    margin-top:23px
+
+}
+
+table{
+    margin: 20px;
+}
+
+input{
+    border-radius: 21px;
+    border: 15px solid #13695d;
+    font-size:34px;
+    height: 100px;
+    width: 720px;
+}
+p{
+  font-size:50px; 
+  height: 10px;
+  width: 456px; 
+  color: white; 
+  padding-left: 100px
+}
+
+button{
+    border-radius: 15px;
+    font-size: 40px;
+    background: white;
+    width: 140px;
+    height: 120px;
+    margin: 6px;
+}
+button:hover {
+    background-color: red;
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+
+.calculator{ 
+    border: 20px solid #13695d;
+    background-color: black;
+    padding: 2px;
+    border-radius: 53px;
+    display: inline-block;
+    
+}
+
+h1{
+    font-size: 28px;
+    font-family: 'Courier New', Courier, monospace;
+}
+    </style>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="font-size: 50px;">Calculator</h1>
+
+        <div class="calculator">
+            <p id="r"></p>
+            <input type="text" name="n1" id="n1" value="" readonly /><br>
+            <table>
+                <tr>
+                    <td><button onclick="clearScreen()">C</button></td>
+                    <td><button onclick="back()">Check</button></td>
+                    <td><button onclick="allclear()">AC</button></td>
+                    <td><button onclick="pie()">π</button></td>
+                     <td><button onclick="per('%')">%</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="one(7)">7</button></td>
+                    <td><button onclick="one(8)">8</button></td>
+                    <td><button onclick="one(9)">9</button></td>
+                    <td><button onclick="sqrt()">√x</button></td>
+                    <td><button onclick="div('/')">/</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="one(4)">4</button></td>
+                    <td><button onclick="one(5)">5</button></td>
+                    <td><button onclick="one(6)">6</button></td>
+                   <td><button>log</button></td>
+                    <td><button onclick="mul('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="one(1)">1</button></td>
+                    <td><button onclick="one(2)">2</button></td>
+                    <td><button onclick="one(3)">3</button></td>
+                   <td><button onclick="cube('x3')">x3</button></td>
+                     <td><button onclick="sub('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="dis('.')">.</button></td>
+                    <td><button onclick="one(0)">0</button></td>
+                    <td><button style="background-color: #13695d" onclick="result()">=</button></td>
+                    <td><button onclick="sqr('x2')">x2</button></td>
+                     <td><button onclick="add('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button>(</button></td>
+                    <td><button>)</button></td>
+                    <td><button onclick="cos()">cos</button></td>
+                    <td><button onclick="sin()">sin</button></td>
+                    <td><button onclick="tan()">tan</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script>
+   function dis(val)
+  {
+    document.getElementById('n1').value+=val
+  }
+
+  var al="";
+  function back()
+  {
+    //console.log(al);
+    document.getElementById('n1').value=al;
+  }
+  function clearScreen() 
+  {
+    document.getElementById('n1').value = "";
+  }
+  function allclear() 
+  {
+    document.getElementById('n1').value = "";
+    document.getElementById('r').innerHTML="";
+  }
+  
+  function one(p)
+  {
+  var s=document.getElementById('n1').value;
+  if(s=="")
+  {
+    document.getElementById('n1').value=p;
+  }
+  else
+ {
+    s=parseInt(s);
+    s=s*10+p;
+    document.getElementById('n1').value=s;
+ }
+}
+  
+   var a;
+  var op;
+  function add(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"+";
+    document.getElementById('n1').value="";
+  }
+  function sub(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"-";
+    document.getElementById('n1').value="";
+  }
+  function mul(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"x";
+    document.getElementById('n1').value="";
+  }
+  function div(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"/";
+    document.getElementById('n1').value="";
+  }
+  function per(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"%";
+    document.getElementById('n1').value="";
+  }
+  function sqr(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"x2";
+    document.getElementById('n1').value="";
+  }
+  function cube(t) 
+  {
+    op=t;
+    var n1=document.getElementById('n1').value;
+    a=parseFloat(n1);
+    document.getElementById('r').innerHTML=a+"x3";
+    document.getElementById('n1').value="";
+  }
+  function pie(){
+    var q=3.1459;
+    document.getElementById('n1').value=q;
+    document.getElementById('r').innerHTML=q;
+  }
+  function sin(){
+    
+     var t=document.getElementById('n1').value;
+     t=parseFloat(t);
+     let n=Math.sin(t);
+     document.getElementById('r').innerHTML="sin("+t+")="+n;
+     document.getElementById('n1').value=n;
+    }
+     
+    function cos(){
+     var t=document.getElementById('n1').value;
+     t=parseFloat(t);
+     let n=Math.cos(t);
+     document.getElementById('r').innerHTML="cos("+t+")="+n;
+     document.getElementById('n1').value=n;
+  }
+  function tan(){
+     var t=document.getElementById('n1').value;
+     t=parseFloat(t);
+     let n=Math.tan(t);
+     document.getElementById('r').innerHTML="tan("+t+")="+n;
+     document.getElementById('n1').value=n;
+  }
+  function sqrt(){
+    var n1=document.getElementById('n1').value
+    a=parseFloat(n1);
+    document.getElementById('n1').value=a**(1/2);
+    document.getElementById('r').innerHTML="√"+a+"="+(a**(1/2));
+  }
+
+  function result()
+  {
+    var b;
+    var n1=document.getElementById('n1').value;
+    b=parseInt(n1);
+     switch(op)
+     {
+      case '+':
+      document.getElementById('n1').value=a+b;
+      document.getElementById('r').innerHTML=a+op+b+"="+(a+b);
+      al=al+a+"+"+b+"="+(a+b);
+      break;
+     }
+     switch(op)
+     {
+      case '-':
+      document.getElementById('n1').value=a-b;
+      document.getElementById('r').innerHTML=a+op+b+"="+(a-b);
+      al=al+a+"-"+b+"="+(a-b);
+      break;
+     }
+     switch(op)
+     {
+      case '*':
+      document.getElementById('n1').value=a*b;
+      document.getElementById('r').innerHTML=a+op+b+"="+(a*b);
+      al=al+a+"*"+b+"="+(a*b);
+      break;
+     }
+     switch(op)
+     {
+      case '/':
+      document.getElementById('n1').value=a/b;
+      document.getElementById('r').innerHTML=a+op+b+"="+(a/b);
+      if(b==0)
+      document.getElementById('r').innerHTML="Can'nt divide by zero";
+      al=al+a+"/"+b+"="+(a/b);
+      break;
+     }
+     switch(op)
+     {
+      case '%':
+      document.getElementById('n1').value=(a*b)/100;
+      document.getElementById('r').innerHTML=a+op+b+"="+(a*b)/100;
+      al=al+a+"%"+b+"="+(a*b)/100;
+      break;
+     }
+     switch(op)
+     {
+      case 'x2':
+      document.getElementById('n1').value=a*a;
+      document.getElementById('r').innerHTML=a+op+"="+(a*a);
+      al=al+a+"x2"+"="+(a*a);
+      break;
+     }
+     switch(op)
+     {
+      case 'x3':
+      document.getElementById('n1').value=a*a*a;
+      document.getElementById('r').innerHTML=a+op+"="+(a*a*a);
+      al=al+a+"x3"+"="+(a*a*a);
+      break;
+     }
+  }
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
